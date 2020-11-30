@@ -6,7 +6,7 @@ In this task, we are provided with comments from wikipedia and each comment is l
 
 Work done on this topic and experiments conducted are available at this repo: https://github.com/varshakr24/Kaggle_ToxicComment
 
-####Data Analysis and PreProcessing####
+#### Data Analysis and PreProcessing ####
 https://github.com/varshakr24/Kaggle_ToxicComment/blob/main/notebooks/DataPreprocess.ipynb
 Before building the model, text sequences were analysed to derive useful statistics required for modelling hyper parameters. Following are the few observations and decision made with respect to pre-processing of ‘comment_text’:
 The maximum length of each of the given training sequences was examined. It is clearly evident from the histogram that the majority of sentences are restricted in length to less than 100. Hence, a maximum length of 100 was chosen for sentence encoding in all experiments. 
@@ -18,7 +18,7 @@ Ex: 👍 is converted into :thumbs_up:
 Spelling mistakes are quite common as they are user comments. A spell correction module could be used (Commented it out as it takes long time to run)
 The cleaned files are available in the ‘cleaned/’ folder
 
-####Data modelling####
+#### Data modelling ####
 Experimented with different models based on the word/sentence embeddings considered. The embeddings used are as follows. Code for running models corresponding to each embedding are in individual notebooks
 Glove: Trained on wiki corpus, hence source matches. Used spacy tokenizer. Restricting the maximum number of words in the vocabulary to 50000. Requires encoding architecture as Glove gives only word embeddings. Architectures include different combinations and ordering of CNNs and RNNs which act as sentence encoders on top of word embeddings. All models converged and took around 3-8 mins per epoch. The leaderboard scores ranged from 0.979 to 0.983. Vec used: glove.840B.300d
 https://github.com/varshakr24/Kaggle_ToxicComment/blob/main/notebooks/Glove.ipynb
@@ -38,7 +38,7 @@ Regularization after embedding layer
 Early stopping was used to stop training and loss was evaluated on 10% of the train set used as validation data
 These were kept constant and individual components were altered to better compare the models. All models are available in this file: https://github.com/varshakr24/Kaggle_ToxicComment/blob/main/notebooks/models/all_models.py
 
-####Results Evaluation####
+#### Results Evaluation ####
 
 The table below gives the model, epoch at which the results were considered, validation loss and accuracy for 10% validation data and the leaderboard score on kaggle:
 
@@ -63,7 +63,7 @@ Simple model with 1 lstm layer, 1cnn layer and 1 dense layer itself performed be
 LSTM/GRU followed by CNN performed better than CNN followed by LSTM
 Complex models involving BERT or sentence encoders require a lot more training time and resource to achieve the score that simpler models do with lesser training time and resource.
 
-####Improvements####
+#### Improvements ####
 Better language preprocessing; most comments include multilingual texts and all that data is lost. 
 Punctuation is not handled. “!!!!!” can give a great amount of information
 Better hyperparameter tuning
